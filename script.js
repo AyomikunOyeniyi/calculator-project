@@ -1,6 +1,6 @@
 //functions for basic math operations
 let result = '';
-
+let calculationComplete = false;
 //declaring variables for numbers and operators
 let firstNumber = '';
 let operator = '';
@@ -13,7 +13,7 @@ function add(firstNumber, secondNumber) {
 };
 
 function subtract(firstNumber, secondNumber) {
-    result = firstNumber + secondNumber;
+    result = firstNumber - secondNumber;
     display.textContent = result;
 };
 
@@ -38,6 +38,7 @@ function divide(firstNumber, secondNumber) {
 
 //operate function
 function operate() {
+
     firstNumber = Number(firstNumber);
     secondNumber = Number(secondNumber);
 
@@ -50,6 +51,8 @@ function operate() {
     } else if (operator === '/') {
         divide(firstNumber, secondNumber);
     };
+
+    
 };
 
 
@@ -72,6 +75,7 @@ const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((numberButton) => {
     
     numberButton.addEventListener('click', () => {
+        
         if (operator === '') {
             firstNumber += numberButton.textContent;
             display.textContent = firstNumber;
@@ -98,7 +102,11 @@ operatorButtons.forEach((operatorButton) => {
 // for the equals button
 const equalsButton = document.querySelector(".equals");
 equalsButton.addEventListener('click', () => {
-    if (firstNumber !== "" && secondNumber !== "") {
+    if (operator !== "" && secondNumber !== "") {
         operate();
+        firstNumber = result;
+        secondNumber = "";
+        operator = "";
+        calculationComplete = true;
     }
 });
