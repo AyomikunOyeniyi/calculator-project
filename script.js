@@ -23,7 +23,11 @@ function multiply(firstNumber, secondNumber) {
 };
 
 function divide(firstNumber, secondNumber) {
-    result = firstNumber / secondNumber;
+    if (secondNumber === 0) {
+        result = 'Error';
+    } else {
+        result = firstNumber / secondNumber;
+    };
     display.textContent = result;
 };
 
@@ -44,9 +48,6 @@ function operate() {
     } else if(operator === 'x') {
         multiply(firstNumber, secondNumber);
     } else if (operator === '/') {
-        if (secondNumber === 0) {
-            display.textContent = "Error"
-        }
         divide(firstNumber, secondNumber);
     };
 };
@@ -56,7 +57,10 @@ function operate() {
 const clearButton =  document.querySelector(".clear");
 
 clearButton.addEventListener('click', () => {
-    display.textContent = ' ';
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    display.textContent = "";
 })
 
 //functions to display numbers
@@ -93,4 +97,8 @@ operatorButtons.forEach((operatorButton) => {
 
 // for the equals button
 const equalsButton = document.querySelector(".equals");
-equalsButton.addEventListener('click', operate);
+equalsButton.addEventListener('click', () => {
+    if (firstNumber !== "" && secondNumber !== "") {
+        operate();
+    }
+});
