@@ -1,6 +1,7 @@
 //functions for basic math operations
 let result = '';
 let calculationComplete = false;
+
 //declaring variables for numbers and operators
 let firstNumber = '';
 let operator = '';
@@ -31,14 +32,8 @@ function divide(firstNumber, secondNumber) {
     display.textContent = result;
 };
 
-
-
-
-
-
 //operate function
 function operate() {
-
     firstNumber = Number(firstNumber);
     secondNumber = Number(secondNumber);
 
@@ -55,10 +50,8 @@ function operate() {
     
 };
 
-
 // clear button functionality
 const clearButton =  document.querySelector(".clear");
-
 clearButton.addEventListener('click', () => {
     firstNumber = "";
     secondNumber = "";
@@ -75,24 +68,19 @@ const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((numberButton) => {
     
     numberButton.addEventListener('click', () => {
-        
         if (operator === '') {
             firstNumber += numberButton.textContent;
             display.textContent = firstNumber;
         } else {
             secondNumber += numberButton.textContent;
             display.textContent = secondNumber;
-        };
-        
+        }; 
     });
-
 });
-
 
 //then for the operator buttons
 const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach((operatorButton) => {
-
     operatorButton.addEventListener('click', () => {
         operator = operatorButton.textContent;
         display.textContent += " " + operator;
